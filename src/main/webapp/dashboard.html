@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Platform - Dashboard</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <!-- Font Awesome for icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/search.css">
+    <link rel="stylesheet" href="css/user-profile.css">
+    <link rel="stylesheet" href="css/feeds.css">
+    <link rel="stylesheet" href="css/friends.css">
+    <link rel="stylesheet" href="css/projects.css">
+    <link rel="stylesheet" href="css/chatInterface.css">
+    <link rel="stylesheet" href="css/notification.css">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body data-user-id="${userId}">
+
+<!--  Maha New Change -->
+
+<header class="site-header">
+    <div class="header-container">
+        <div class="logo">
+            <img src="images/logo.svg" alt="ifConnect Logo" class="logo-img">
+            <h1 class="project-name">ifConnect</h1>
+        </div>
+        <div class="toggle_section">
+        	<button id="notifications" class="notifications" title="Notifications">
+            	<i class="fas fa-bell"></i> <!-- Moon for dark, will switch to sun for light -->
+        	</button>
+    		<button id="theme-toggle" class="theme-toggle-btn" title="Toggle Theme">
+            	<i class="fas fa-moon"></i> <!-- Moon for dark, will switch to sun for light -->
+        	</button>
+        	<div class="notification-dropdown" id="notification-dropdown">
+                <div class="notification-item unread">
+                    <div class="title">New Friend Request</div>
+                    <div class="time">2 minutes ago</div>
+                </div>
+                <!-- More notification items will be added dynamically -->
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="dashboard-container">
+    <!-- Left Sidebar -->
+    <div class="left-sidebar">
+        <!-- Profile Section -->
+        <div class="profile-section" id="profile-trigger">
+            <div class="profile-header">
+                <div class="profile-image">
+                    <img src="images/default-profile.jpg" alt="Profile" id="profile-img" onerror="this.src='images/default-profile.jpg'">
+                </div>
+                <div class="profile-info">
+                    <h2 id="username">Jeshwanth</h2>
+                    <p id="user-bio">Zoho Schools,Tech</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Menu -->
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" onclick="new FeedsView()">
+                <i class="fas fa-th-large"></i>
+                <span>Feeds</span>
+            </a>
+            <a href="#" class="nav-item" onclick="new Messages()"> 
+                <i class="fas fa-comment-alt"></i>
+                <span>Messages</span>
+                <span class="badge"></span>
+            </a>
+            <a href="#"  id ="projects" class="nav-item" onclick=" new ProjectManager()">
+                <i class="fas fa-users"></i>
+                <span>Projects</span>
+            </a>
+            <a href="#" class="nav-item" onclick="new FriendsView()">
+                <i class="fas fa-user-friends"></i>
+                <span>Friends</span>
+                <span class="badge"></span>
+            </a>
+            </a>
+            <a href="#" class="nav-item" onclick="new UserProfileView().loadCurrentUserProfile('yourPostsTab')">
+                <i class="fas fa-user"></i>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="main-content" >
+        <!-- Content will be added later -->
+    </div>
+    <button id="scrollTopBtn">
+    	<i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Right Sidebar -->
+    <div class="right-sidebar">
+        <div class="search-container">
+            <input type="text" 
+                   class="search-input" 
+                   placeholder="Search users..."
+                   autocomplete="off">
+            <div class="search-results"></div>
+        </div>
+        <!-- Other right sidebar content will be added later -->
+    </div>
+    
+    <div class="suggestion-bar">  
+    		<h4>Suggestions:</h1>
+            <div class="suggestions"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Edit Profile Modal -->
+<div class="modal" id="edit-profile-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Edit Profile</h2>
+            <span class="close">x</span>
+        </div>
+        <button class="removePfpButton" onclick="window.profileManager.removePfp()" title="Remove your profile picture">
+            <i class="fas fa-trash"></i>
+        </button>
+        <form id="edit-profile-form">
+            <div class="form-group profile-pic-group">
+                <img src="images/default-profile.jpg" alt="Profile" id="preview-profile-img">
+                <div class="upload-overlay">
+                    <label for="profile-upload">
+                        <i class="fas fa-camera"></i>
+                        <span>Change Photo</span>
+                    </label>
+                    <input type="file" id="profile-upload" accept="image/*" hidden>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="edit-username">Username</label>
+                <input type="text" id="edit-username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="edit-bio">Bio</label>
+                <textarea id="edit-bio" name="bio" rows="3" placeholder="Write something about yourself..."></textarea>
+            </div>
+            <!-- Tags Section -->
+            <div class="form-group tags-section">
+                <label>Tags</label>
+                <div class="user-tags" id="user-tags"></div>
+                <button type="button" class="add-tag-btn" id="add-tag-btn">Add Tag</button>
+                <button type="button" class="remove-tag-btn" id="remove-tag-btn">Remove Tag</button>
+                <!-- Add Tag Section (Hidden Initially) -->
+                <div class="add-tag-section" id="add-tag-section" style="display: none;">
+                    <input type="text" class="tag-search-bar" id="tag-search-bar" placeholder="Search tags...">
+                    <div class="available-tags" id="available-tags"></div>
+                    <div class="selected-tags" id="selected-new-tags"></div>
+                    <button type="button" class="add-selected-tags-btn" id="add-selected-tags-btn">Add Selected Tags</button>
+                </div>
+            </div>
+            <button type="submit" class="save-btn">Save Changes</button>
+        </form>
+    </div>
+</div>
+
+<!-- Add this after the edit profile modal -->
+<div class="modal" id="create-post-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Create Post</h2>
+            <span class="close">&times;</span>
+        </div>
+        <form id="create-post-form">
+            <div class="form-group">
+                <div id="post-caption" 
+                     class="rich-editor" 
+                     contenteditable="true" 
+                     data-placeholder="Write something..."></div>
+                <input type="hidden" name="caption" id="caption-input">
+            </div>
+            <div class="form-group">
+                <div id="media-preview" class="media-preview"></div>
+                <label for="post-media" class="upload-label">
+                    <i class="fas fa-image"></i>
+                    <span>Add Photo</span>
+                </label>
+                <input type="file" 
+                       id="post-media" 
+                       name="media" 
+                       accept="image/*" 
+                       hidden>
+            </div>
+            <button type="submit" class="post-btn">Post</button>
+        </form>
+    </div>
+</div>
+
+<!-- Add this after the create post modal -->
+<div class="modal" id="edit-post-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Edit Post</h2>
+            <span class="close">&times;</span>
+        </div>
+        <form id="edit-post-form">
+            <input type="hidden" name="postId" id="edit-post-id">
+            <div class="form-group">
+                <div id="edit-post-caption" 
+                     class="rich-editor" 
+                     contenteditable="true" 
+                     data-placeholder="Write something..."></div>
+                <input type="hidden" name="caption" id="edit-caption-input">
+            </div>
+            <div class="form-group">
+                <div id="edit-media-preview" class="media-preview"></div>
+                <label for="edit-post-media" class="upload-label">
+                    <i class="fas fa-image"></i>
+                    <span>Change Photo</span>
+                </label>
+                <input type="file" 
+                       id="edit-post-media" 
+                       name="media" 
+                       accept="image/*" 
+                       hidden>
+            </div>
+            <button type="submit" class="post-btn">Update Post</button>
+        </form>
+    </div>
+</div>
+
+<div class="notification-container"></div>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const icon = themeToggle.querySelector('i');
+
+    if (localStorage.getItem('theme') === 'light') {
+        body.classList.add('light-theme');
+        icon.classList.replace('fa-moon', 'fa-lightbulb');
+    }
+
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('light-theme');
+        if (body.classList.contains('light-theme')) {
+            icon.classList.replace('fa-moon', 'fa-lightbulb');
+            localStorage.setItem('theme', 'light');
+        } else {
+            icon.classList.replace('fa-lightbulb', 'fa-moon');
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+</script>
+
+<script src="js/dashboardProfile.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/feeds.js"></script>
+<script src="js/user-profile.js"></script>
+<script src="js/friends.js"></script>
+<script src="js/search.js"></script>
+<script src="js/projects.js"></script>
+<script src="js/clientChat.js"></script>
+<script src="js/suggestions.js"></script>
+<script src="js/notifications.js"></script>
+</body>
+</html>

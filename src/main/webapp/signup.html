@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Clone - Sign Up</title>
+    <link rel="stylesheet" href="css/signup.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="signup-box">
+    <h1 id="websiteName">IFCONNECT</h1>
+        <form id="signupForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
+                <div class="validation-message" id="fullNameValidation"></div>
+            </div>
+            <div class="form-group">
+                <input type="text" id="username" name="username" placeholder="Username" required>
+                <div class="validation-message" id="usernameValidation"></div>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <div class="validation-message" id="emailValidation"></div>
+            </div>
+            <div class="form-group password-group">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <span class="password-toggle" onclick="togglePassword('password')">
+                    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                    </svg>
+                </span>
+                <div class="password-strength" id="passwordStrength"></div>
+            </div>
+            <div class="form-group password-group">
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+                <span class="password-toggle" onclick="togglePassword('confirmPassword')">
+                    <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                    </svg>
+                </span>
+                <div class="validation-message" id="confirmPasswordValidation"></div>
+            </div>
+            <button type="submit" class="signup-btn">Sign Up</button>
+        </form>
+        
+        <!-- Interests Section (Initially Hidden) -->
+        <div id="interestsSection" style="display: none;">
+            <h2>Add Your Interests</h2>
+            <input type="text" class="search-bar" placeholder="Search tags...">
+            <div class="tags-container" id="tagsContainer"></div>
+            <div class="selected-tags-container" id="selectedTagsContainer"></div>
+            <button class="submit-btn" onclick="submitTags()">Submit</button>
+        </div>
+        
+        <!-- Loading Indicator (Initially Hidden) -->
+        <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+            <div class="spinner"></div>
+            <p id="loadingMessage">Creating account...</p>
+        </div>
+        
+        <div class="login-link">
+            Already have an account? <a href="login.html">Log in</a>
+        </div>
+        <div id="errorMessages" class="error-messages"></div>
+    </div>
+</div>
+<script src="js/signup.js"></script>
+</body>
+</html>

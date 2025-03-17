@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Clone - Login</title>
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="login-box">
+    <h1 id="websiteName">IFCONNECT</h1>
+        <h1></h1>
+        <form id="loginForm">
+            <div class="form-group">
+                <input type="text" id="username" name="username" placeholder="Username " required>
+                <div class="validation-message" id="usernameValidation"></div>
+            </div>
+            <div class="form-group password-group">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <span class="password-toggle" onclick="togglePassword('password')">
+                        <svg class="eye-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                        </svg>
+                    </span>
+            </div>
+            <button type="submit" class="login-btn">Log In</button>
+        </form>
+        <div class="divider">
+            <span>or</span>
+        </div>
+        
+        <div class="forgot-password">
+            <a href="/forgot-password">Forgot Password?</a>
+        </div>
+        <div class="signup-link">
+            Don't have an account? <a href="signup.html">Sign up</a>
+        </div>
+        <div id="errorMessages" class="error-messages"></div>
+    </div>
+</div>
+<script src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,243 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Dark Theme (Purple-based) - Default */
+    --bg-dark:linear-gradient(145deg, #1a0033 0%, #000000 100%); /* Dark neutral gray background, complements #e42527 */
+    --bg-darker: rgb(0, 0, 0); /* Darker purple shade (unchanged) */
+    --text-primary: #ffffff; /* White text */
+    --text-secondary: grey; /* Light purple for secondary text */
+    --accent-color: #8000ff; /* Red accent for dark theme */
+    --accent-color-dimmed: rgba(128, 0, 255,0.5); /* Dimmed red for hover in dark theme */
+    --border-color: rgba(255,255,255,0.5); /* Medium purple border (unchanged) */
+    --hover-bg: rgba(0, 0, 0, 0.7); /* 50% opacity of #e42527 */
+    --active-font:white; /* Red for active elements in dark theme */
+    --active-bg: #8000ff; /* Dark reddish-purple background for active elements */
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--bg-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#websiteName {
+    font-family: "Scope One", serif;
+  font-weight: 400;
+  font-style: normal;
+    font-size: 3rem;
+    color: var(--text-primary);
+    text-transform: uppercase; /* Makes it stand out as a brand */
+    letter-spacing: 1.5px; /* Adds a touch of elegance */
+    margin: 0.5em 0; /* Balanced spacing */
+    padding: 0.2em 0.5em; /* Slight padding for structure */
+    transition: all 0.3s ease; /* Smooth hover effect */
+    border-radius:5px;
+}
+
+/* Hover effect for interactivity */
+#websiteName:hover {
+		cursor:pointer;
+	
+     background: linear-gradient(45deg, #ED121C, #2A41AC);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    transform: translateY(-2px); /* Slight lift */
+}
+
+
+
+.container {
+    width: 100%;
+    max-width: 650px;
+    padding: 20px;
+}
+
+.login-box {
+    background-color: rgba(0,0,0,0.5);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #262626;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+input:focus {
+    outline: none;
+}
+
+.password-group {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    cursor: pointer;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.eye-icon {
+    width: 20px;
+    height: 20px;
+    fill: #8e8e8e;
+}
+
+.password-toggle:hover .eye-icon {
+    fill: #262626;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    color: white;
+ border: 1px solid var(--accent-color);
+ background-color:transparent;
+     border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+#loginForm{
+	width:80%;
+	margin:auto;
+	margin-bottom:10em;
+}
+
+.login-btn:hover {
+background-color: var(--accent-color);}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.divider span {
+    padding: 0 10px;
+    color: #8e8e8e;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.social-icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #dbdbdb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+.social-icon-btn svg {
+    width: 20px;
+    height: 20px;
+    transition: all 0.3s ease;
+}
+
+.google-btn svg {
+    fill: #DB4437;
+}
+
+.facebook-btn svg {
+    fill: #4267B2;
+}
+
+.social-icon-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.forgot-password {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.forgot-password a {
+    color: #00376b;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.signup-link {
+    text-align: center;
+    margin-top: 20px;
+        color: var(--text-primary);
+
+    font-size: 14px;
+}
+
+.signup-link a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: bold;
+}
+.signup-link a:hover{
+	color: var(--text-primary);
+}
+.error-messages {
+    color: #ed4956;
+    margin-top: 10px;
+    text-align: center;
+}
+
+input{
+	background:transparent;
+	color:var(--active-font);
+	border:1px solid rgba(255,255,255,0.2);
+		border-radius:16px;
+	
+}
+
+input:focus{
+	outline-style:none;
+	border:1px solid var(--accent-color);
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP - Instagram Clone</title>
+    <link rel="stylesheet" href="css/verify-otp.css">
+</head>
+<body>
+<div class="container">
+    <div class="verification-box">
+        <h1>Verify Your Email</h1>
+        <p class="info-text">We've sent a verification code to your email address</p>
+        <form id="otpForm">
+            <div class="otp-input-container">
+                <input type="text" maxlength="1" class="otp-input" required>
+                <input type="text" maxlength="1" class="otp-input" required>
+                <input type="text" maxlength="1" class="otp-input" required>
+                <input type="text" maxlength="1" class="otp-input" required>
+                <input type="text" maxlength="1" class="otp-input" required>
+                <input type="text" maxlength="1" class="otp-input" required>
+            </div>
+            <div id="timer" class="timer">Resend OTP in: <span id="countdown">05:00</span></div>
+            <button type="submit" class="verify-btn">Verify</button>
+            <button type="button" id="resendBtn" class="resend-btn" disabled>Resend OTP</button>
+        </form>
+        <div id="errorMessages" class="error-messages"></div>
+    </div>
+</div>
+<script src="js/verify-otp.js"></script>
+</body>
+</html>

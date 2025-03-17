@@ -1,0 +1,95 @@
+/* Notification Button Styles */
+.notifications {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.3s;
+}
+
+.notifications:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.notifications i {
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+/* Notification Badge */
+.notification-badge {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    background-color: #ff4444;
+    color: white;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none; /* Hidden by default */
+}
+
+/* Notification Dropdown */
+.notification-dropdown {
+    position: absolute;
+    top: 80%;
+    right: 40px;
+    width: 270px;
+    max-height: 400px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    display: none;
+    z-index: 1000;
+}
+
+.notification-dropdown.show {
+    display: block;
+}
+
+.notification-item {
+	margin:12px;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.notification-item:hover {
+    background-color: #f5f5f5;
+}
+
+.notification-item.unread {
+    background-color: #f0f7ff;
+}
+
+.notification-item .title {
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.notification-item .time {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Dark theme adjustments */
+body.light-theme .notifications i {
+    color: #333;
+}
+
+body.light-theme .notification-dropdown {
+    background-color: #fff;
+}
+
+body.light-theme .notification-item:hover {
+    background-color: #f0f0f0;
+}
